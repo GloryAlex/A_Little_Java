@@ -1,9 +1,12 @@
+package shish;
+
 /**
  * 烤串
  */
 public abstract class Shish {
+    OnlyOnions ooFn = new OnlyOnions();
+    IsVegetarian isVg=new IsVegetarian();
     abstract boolean onlyOnions();
-
     // 是否适合素食主义者
     abstract boolean isVegetarian();
 }
@@ -14,12 +17,12 @@ public abstract class Shish {
 class Skewer extends Shish {
     @Override
     boolean onlyOnions() {
-        return true;
+        return ooFn.forSkewer();
     }
 
     @Override
     boolean isVegetarian() {
-        return true;
+        return isVg.forSkewer();
     }
 }
 
@@ -35,12 +38,12 @@ class Onion extends Shish {
 
     @Override
     boolean onlyOnions() {
-        return s.onlyOnions();
+        return ooFn.forOnion(s);
     }
 
     @Override
     boolean isVegetarian() {
-        return s.isVegetarian();
+        return isVg.forOnion(s);
     }
 }
 
@@ -54,12 +57,12 @@ class Lamb extends Shish {
 
     @Override
     boolean onlyOnions() {
-        return false;
+        return ooFn.forLamb(s);
     }
 
     @Override
     boolean isVegetarian() {
-        return false;
+        return isVg.forLamb(s);
     }
 }
 
@@ -73,12 +76,12 @@ class Tomato extends Shish {
 
     @Override
     boolean onlyOnions() {
-        return false;
+        return ooFn.forTomato(s);
     }
 
     @Override
     boolean isVegetarian() {
-        return s.isVegetarian();
+        return isVg.forTomato(s);
     }
 }
 
